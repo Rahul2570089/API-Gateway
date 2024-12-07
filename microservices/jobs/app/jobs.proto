@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package jobs;
+
+service JobService {
+  rpc GetJob(GetJobRequest) returns (GetJobResponse);
+  rpc CreateJob(CreateJobRequest) returns (CreateJobResponse);
+}
+
+message GetJobRequest {
+  int32 job_id = 1;
+}
+
+message GetJobResponse {
+  int32 job_id = 1;
+  string status = 2;
+}
+
+message CreateJobRequest {
+  string job_name = 1;
+}
+
+message CreateJobResponse {
+  string status = 1;
+}

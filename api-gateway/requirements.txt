@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+grpcio
+grpcio-tools
+pyjwt
+# prometheus-fastapi-instrumentator==5.0.0
+python-dotenv
+requests
+python-jose==3.3.0

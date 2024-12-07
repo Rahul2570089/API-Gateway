@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package pipelines;
+
+service PipelineService {
+  rpc GetPipeline(GetPipelineRequest) returns (GetPipelineResponse);
+  rpc CreatePipeline(CreatePipelineRequest) returns (CreatePipelineResponse);
+}
+
+message GetPipelineRequest {
+  int32 pipeline_id = 1;
+}
+
+message GetPipelineResponse {
+  int32 pipeline_id = 1;
+  string status = 2;
+}
+
+message CreatePipelineRequest {
+  string pipeline_name = 1;
+}
+
+message CreatePipelineResponse {
+  string status = 1;
+}
