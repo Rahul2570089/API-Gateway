@@ -1,16 +1,24 @@
+import grpc
 from fastapi import APIRouter, HTTPException
-from app.services.user_client import fetch_user, create_user
+from services.user_client import create_user, get_user
 
 router = APIRouter()
 
-@router.get("/{user_id}")
-async def get_user(user_id: int):
-    user = fetch_user(user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return {"user_id": user.user_id, "name": user.name}
-
 @router.post("/")
-async def create_new_user(name: str):
-    status = create_user(name)
-    return {"status": status}
+def create_user_route(user: dict):
+    try:
+        response = create_user(user)
+        return {
+            "message": response.message,
+            "user": {"id": response.user.id, "name": response.user.name, "email": response.user.email}
+        }
+    except grpc.RpcError as e:
+        raise HTTPException(status_code=e.code().value[0], detail=e.details())
+
+@router.get("/{user_id}")
+def get_user_route(user_id: int):
+    try:
+        response = get_user(user_id)
+        return {"user": {"id": response.id, "name": response.name, "email": response.email}}
+    except grpc.RpcError as e:
+        raise HTTPException(status_code=e.code().value[0], detail=e.details())

@@ -24,21 +24,19 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0busers.proto\x12\x05users\"!\n\x0eGetUserRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\"0\n\x0fGetUserResponse\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\"!\n\x11\x43reateUserRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\x12\x43reateUserResponse\x12\x0e\n\x06status\x18\x01 \x01(\t2\x8a\x01\n\x0bUserService\x12\x38\n\x07GetUser\x12\x15.users.GetUserRequest\x1a\x16.users.GetUserResponse\x12\x41\n\nCreateUser\x12\x18.users.CreateUserRequest\x1a\x19.users.CreateUserResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0busers.proto\"/\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\"\x14\n\x06UserId\x12\n\n\x02id\x18\x01 \x01(\x05\":\n\x12\x43reateUserResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x13\n\x04user\x18\x02 \x01(\x0b\x32\x05.User2R\n\x0bUserService\x12(\n\nCreateUser\x12\x05.User\x1a\x13.CreateUserResponse\x12\x19\n\x07GetUser\x12\x07.UserId\x1a\x05.Userb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'users_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_GETUSERREQUEST']._serialized_start=22
-  _globals['_GETUSERREQUEST']._serialized_end=55
-  _globals['_GETUSERRESPONSE']._serialized_start=57
-  _globals['_GETUSERRESPONSE']._serialized_end=105
-  _globals['_CREATEUSERREQUEST']._serialized_start=107
-  _globals['_CREATEUSERREQUEST']._serialized_end=140
-  _globals['_CREATEUSERRESPONSE']._serialized_start=142
-  _globals['_CREATEUSERRESPONSE']._serialized_end=178
-  _globals['_USERSERVICE']._serialized_start=181
-  _globals['_USERSERVICE']._serialized_end=319
+  _globals['_USER']._serialized_start=15
+  _globals['_USER']._serialized_end=62
+  _globals['_USERID']._serialized_start=64
+  _globals['_USERID']._serialized_end=84
+  _globals['_CREATEUSERRESPONSE']._serialized_start=86
+  _globals['_CREATEUSERRESPONSE']._serialized_end=144
+  _globals['_USERSERVICE']._serialized_start=146
+  _globals['_USERSERVICE']._serialized_end=228
 # @@protoc_insertion_point(module_scope)

@@ -2,7 +2,7 @@ import grpc
 from concurrent import futures
 import users_pb2
 import users_pb2_grpc
-from services.users_service import UserService
+from microservices.users.app.services.users_service import UserService
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

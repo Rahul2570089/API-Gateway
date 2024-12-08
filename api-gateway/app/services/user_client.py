@@ -1,14 +1,16 @@
 import grpc
-from ....microservices.users.app import users_pb2, users_pb2_grpc
+from microservices.users.app import users_pb2, users_pb2_grpc
 
-def fetch_user(user_id: int):
-    with grpc.insecure_channel("users-service:50051") as channel:
+def create_user(user_data):
+    with grpc.insecure_channel("localhost:50051") as channel:
         stub = users_pb2_grpc.UserServiceStub(channel)
-        response = stub.GetUser(users_pb2.GetUserRequest(user_id=user_id))
+        request = users_pb2.User(**user_data)
+        response = stub.CreateUser(request)
     return response
 
-def create_user(name: str):
-    with grpc.insecure_channel("users-service:50051") as channel:
+def get_user(user_id):
+    with grpc.insecure_channel("localhost:50051") as channel:
         stub = users_pb2_grpc.UserServiceStub(channel)
-        response = stub.CreateUser(users_pb2.CreateUserRequest(name=name))
-    return response.status
+        request = users_pb2.UserId(id=user_id)
+        response = stub.GetUser(request)
+    return response
