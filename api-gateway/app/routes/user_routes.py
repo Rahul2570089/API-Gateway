@@ -1,10 +1,11 @@
 import grpc
-from fastapi import APIRouter, HTTPException
-from services.user_client import create_user, get_user
+from fastapi import APIRouter, HTTPException, Depends
+from app.auth import verify_token
+from app.services.user_client import create_user, get_user
 
 router = APIRouter()
 
-@router.post("/")
+@router.post("/", dependencies=[Depends(verify_token)])
 def create_user_route(user: dict):
     try:
         response = create_user(user)
@@ -15,7 +16,7 @@ def create_user_route(user: dict):
     except grpc.RpcError as e:
         raise HTTPException(status_code=e.code().value[0], detail=e.details())
 
-@router.get("/{user_id}")
+@router.get("/{user_id}", dependencies=[Depends(verify_token)])
 def get_user_route(user_id: int):
     try:
         response = get_user(user_id)
